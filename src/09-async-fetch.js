@@ -1,7 +1,8 @@
 import React from 'react';
 import isEmail from 'validator/lib/isEmail';
 
-const Field = require('./08-field-component-field.js');
+import NewField from './08-field-component-field.js'
+const Field = NewField;
 const CourseSelect = require('./09-course-select.js');
 
 const content = document.createElement('div');
