@@ -24,19 +24,23 @@ module.exports = class extends React.Component {
   };
 
   componentWillReceiveProps(update) {
-    this.setState({
-      department: update.department,
-      course: update.course,
-    });
+
+    // this.setState({
+    //   department: update.department,
+    //   course: update.course,
+    // });
   }
 
   onSelectDepartment = (evt) => {
     const department = evt.target.value;
     const course = null;
-    this.setState({ department, course });
+    this.setState({
+       department: department,
+       course
+     });
+     console.log(this.props)
     this.props.onChange({ name: 'department', value: department });
     this.props.onChange({ name: 'course', value: course });
-
     if (department) this.fetch(department);
   };
 
@@ -77,7 +81,7 @@ module.exports = class extends React.Component {
     if (this.state._loading) {
       return <img alt='loading' src='/img/loading.gif' />;
     }
-    if (!this.state.department || !this.state.courses.length) return <span />;
+    if (!this.state.department || !this.state.courses.length) return;
 
     return (
       <select
@@ -112,9 +116,10 @@ module.exports = class extends React.Component {
 };
 
 function apiClient(department) {
+
   return {
     then: function (cb) {
-      setTimeout(() => { cb(Courses[department]); }, 1000);
+      setTimeout(() => { cb(Courses[department]); }, 2000);
     },
   };
 }

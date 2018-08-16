@@ -23,10 +23,11 @@ module.exports = class extends React.Component {
     const name = this.props.name;
     const value = evt.target.value;
     const error = this.props.validate ? this.props.validate(value) : false;
+    let newError = this.props.validate(value)
 
     this.setState({ value, error });
+    this.props.onChange({ name, value, newError });
 
-    this.props.onChange({ name, value, error });
   };
 
   render() {

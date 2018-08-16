@@ -77,7 +77,15 @@ module.exports = class extends React.Component {
             name='name'
             value={this.state.fields.name}
             onChange={this.onInputChange}
-            validate={(val) => (val ? false : 'Name Required')}
+            validate={(val) => {
+              if(val===''){
+                 return "Name Required"
+              }else if (val==="1") {
+                  return 'cannot be 1'
+              }else{
+                return false
+              }
+            }}
           />
 
           <br />
