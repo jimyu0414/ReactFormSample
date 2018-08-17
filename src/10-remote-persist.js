@@ -3,7 +3,7 @@
 import React from 'react';
 import isEmail from 'validator/lib/isEmail';
 
-const Field = require('./08-field-component-field.js');
+const Field = require('./08new-field-component-field.js');
 const CourseSelect = require('./09-course-select.js');
 
 const content = document.createElement('div');
@@ -63,6 +63,7 @@ module.exports = class extends React.Component {
   };
 
   onInputChange = ({ name, value, error }) => {
+    console.log('oninputchange gets called')
     const fields = this.state.fields;
     const fieldErrors = this.state.fieldErrors;
 
@@ -102,7 +103,6 @@ module.exports = class extends React.Component {
             name='name'
             value={this.state.fields.name}
             onChange={this.onInputChange}
-            validate={(val) => (val ? false : 'Name Required')}
           />
 
           <br />

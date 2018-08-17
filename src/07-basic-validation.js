@@ -18,15 +18,15 @@ module.exports = class extends React.Component {
 
   onFormSubmit = (evt) => {
     const people = [ ...this.state.people ];
-    const person = this.state.fields;
-    const fieldErrors = this.validate(person);
+    const fields = this.state.fields;
+    const fieldErrors = this.validate(fields);
     this.setState({ fieldErrors });
     evt.preventDefault();
 
     if (Object.keys(fieldErrors).length) return;
 
     this.setState({
-      people: people.concat(person),
+      people: people.concat(fields),
       fields: {
         name: '',
         email: '',
@@ -40,11 +40,11 @@ module.exports = class extends React.Component {
     this.setState({ fields });
   };
 
-  validate = (person) => {
+  validate = (fields) => {
     const errors = {};
-    if (!person.name) errors.name = 'Name Required';
-    if (!person.email) errors.email = 'Email Required';
-    if (person.email && !isEmail(person.email)) errors.email = 'Invalid Email';
+    if (!fields.name) errors.name = 'Name Required';
+    if (!fields.email) errors.email = 'Email Required';
+    if (fields.email && !isEmail(fields.email)) errors.email = 'Invalid Email';
     return errors;
   };
 
